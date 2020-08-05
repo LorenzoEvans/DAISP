@@ -32,7 +32,9 @@ class Heap:
                                             # is less than the element at the left child index,
                                             # we can set the largest index to the left child index,
             largest = l
-        if r < height and arr[largest] < arr[r]:
+        if r < height and arr[largest] < arr[r]:  # if the right child index, is less than height, and the element at the current index
+                                                  # is less than the element, at the left child index,
+                                                  # we can set the largest index to the right child index.
             largest = r
         if largest != i:
             print("arr[i] is: ", arr[i], "arr[largest] is", arr[largest])
@@ -45,7 +47,7 @@ class Heap:
             array.append(newNum)
         else:
             array.append(newNum)
-            for i in range((size//2)-1, -1, -1):
+            for i in range((size//2)-1, -1, -1): # Still need to analyze this line, it boggles me.
                 self.heapify(array, size, i)
 
     def deleteNode(self, array, num):

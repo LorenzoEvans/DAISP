@@ -16,7 +16,6 @@ class Stack():
         if not self.is_empty():
             return self.items[-1]
 
- def is_match(par1, par2):
 def is_match(par1, par2):
     matched = par1 + par2
     match_list = ["()", "{}", "[]"]

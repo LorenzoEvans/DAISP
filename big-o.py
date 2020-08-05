@@ -78,6 +78,7 @@ def funct3(n):
 # O(3n) * O(n^3) -- We forgot about distributing here- 
 # let's check the correct version (sans constants):
 
+# Never figured out why...
 # O(3n) * (O(40) + O(n^3/2)) => O(3n / 40) + O(3n^4 /2)
 # Everything makes sense except how we end up dividing 3n by 40.
 # I get that we distribute 3n.

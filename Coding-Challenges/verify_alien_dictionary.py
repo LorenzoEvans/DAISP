@@ -1,4 +1,15 @@
 from typing import List
+
+# PostMortem:
+    (# So, manual iterators, were probably not the best idea here,
+     # but it felt like this comparison was so involved, that the only way to
+     # avoid a crazy run-time, was to 'tweak all the knobs'.
+        # A naive solution might have looked like using a for loop,
+        # and adding or subtracting to variables pointing to i,
+        # which would make the handling the iterators easier.
+    # Note to self, tries might have been good here, prefix tries specifically,
+    # as they seem similar to Huffman encoding for a group of words (the message))
+    # So, one of the working online solutions is to use a Hashtable.
 def isAlienSorted(words: List[str], order: str) -> bool:
 # So, given a set of words, and an alphabet,
 # We want to say, for words[i][j], and words[i][j + 1]
@@ -40,7 +51,7 @@ def isAlienSorted(words: List[str], order: str) -> bool:
         # We want to say, for words[i][j], and words[i][j + 1]
         fst_word_char = words[i - 1][j - 1] # capture our first word character
         try: 
-            snd_word_char = words[i - 1 ][k - 1] 
+            snd_word_char = words[i - 1 ][k - 1] # !!!!!!! This is the bug- k is out of bounds.
         except IndexError as ie: 
             print(ie) # capture our second word character
         # The next step is to compare the location of these chars in the `order` list.

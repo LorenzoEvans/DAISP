@@ -1,12 +1,12 @@
 from typing import List
 
 # PostMortem:
-    (# So, manual iterators, were probably not the best idea here,
-     # but it felt like this comparison was so involved, that the only way to
-     # avoid a crazy run-time, was to 'tweak all the knobs'.
-        # A naive solution might have looked like using a for loop,
-        # and adding or subtracting to variables pointing to i,
-        # which would make the handling the iterators easier.
+    # So, manual iterators, were probably not the best idea here,
+    # but it felt like this comparison was so involved, that the only way to
+    # avoid a crazy run-time, was to 'tweak all the knobs'.
+    # A naive solution might have looked like using a for loop,
+    # and adding or subtracting to variables pointing to i,
+    # which would make the handling the iterators easier.
     # Note to self, tries might have been good here, prefix tries specifically,
     # as they seem similar to Huffman encoding for a group of words (the message))
     # So, one of the working online solutions is to use a Hashtable.
@@ -30,6 +30,7 @@ def isAlienSorted(words: List[str], order: str) -> bool:
 # Tries would be nice to know right now.
     ordered = False
     order.split(" ")
+    
     i = 1
     j = 1
     k = j + 1 # this is going to be the first iterator variable to throw an index out of bounds error, 

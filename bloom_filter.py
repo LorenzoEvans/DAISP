@@ -1,0 +1,1 @@
+"""A bloom filter is a lightweight hash-table, that allows for efficient insertion"""

@@ -23,6 +23,43 @@ class BSTNode:
                 node = BSTNode(value)
                 self.right = node
     
+    def minValNode(self, node):
+        #  Recursively traverse left sub-tree.
+        curNode = node
+        while (curNode.left is not None):
+            curNode = curNode.left
+        return curNode
+    
+    def maxKey(node):
+        while node.right:
+            node = node.right
+        return node
+    def remove(self, value): 
+            if self.value is None:
+                return -1
+            elif self.value > value:
+                # we want to search the right sub-tree
+                self.left = self.left.remove(value)
+            elif self.value < value:
+                    self.left = self.remove(value)
+                    # we want to search the left sub-tree
+            else:
+                if self.left is None and self.right is None:
+                    # This handles the case that the node we're on, 
+                    # has no children.
+                    return None
+                elif self.right and self.left:
+                    # In the event that there are children in either direction:
+                    maxChild = self.maxKey(self.left)
+                    # Grab the highest left sub-tree's child node, as the highest sub-child will be in the 
+                    # lowest level of the tree, and since
+                    self.value = maxChild.value
+                    self.left = self.remove(self.left, maxChild.value)
+                else:
+                    child = self.left if self.left else self.right
+                    # Find the child node to fill the spot of the deleted node.
+                    self.root = child
+            
     def contains(self, value):
         if self.value == value: # If the value is the value contained in the head node, we return true.
                                # We do this at the outset, because it's an `edge case`: usually we search inside of something,
@@ -48,10 +85,26 @@ class BSTNode:
                     else: # Initiate recursion to search the rest of the tree.
                         return self.right.contains(value)
         return False
+    def for_each(self, cb):
+        if self.left is None and self.right is None:
+            # If there are no child nodes,
+            cb(self.value) # Apply the function to the root, and return
+            return
+        elif self.left or self.right: # If there are child nodes,
+            if self.left: # If there's a left child,
+                cb(self.value) # Apply the function to the value,
+                self.left.for_each(cb) # Recurse through the sub-tree
+            if self.right:
+                cb(self.value)
+                self.right.for_each(cb)
 
 BST = BSTNode()
 
 BST.insert(50)
 BST.insert(90)
 BST.insert(13)
+BST.for_each(print)
 print(BST.contains(150))
+BST.remove(13)
+print(BST.contains(13))
+BST.for_each(print)

@@ -92,7 +92,7 @@ def freq_nums(nums: List[int], k: int):
     print(a, freq_dict)
     if a in freq_dict:
       freq_dict[a] += 1
-      del nums[]
+      del nums[a]
     elif a not in freq_dict:
       freq_dict[a] = 1
     else:
@@ -102,7 +102,7 @@ def freq_nums(nums: List[int], k: int):
   for i in range(0, k):
     # print(freq_list[i])
     result.insert(i, freq_list[i])
-  return result
+  return result[0]
   
 
 

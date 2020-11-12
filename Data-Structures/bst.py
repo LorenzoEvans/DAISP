@@ -22,7 +22,6 @@ class BSTNode:
             else: # if there's not a self.right node, park it
                 node = BSTNode(value)
                 self.right = node
-    
     def minValNode(self, node):
         #  Recursively traverse left sub-tree.
         curNode = node
@@ -33,6 +32,7 @@ class BSTNode:
     def maxKey(node):
         while node.right:
             node = node.right
+
         return node
     def remove(self, value): 
             if self.value is None:
@@ -108,3 +108,5 @@ print(BST.contains(150))
 BST.remove(13)
 print(BST.contains(13))
 BST.for_each(print)
+
+

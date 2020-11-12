@@ -35,12 +35,31 @@ def insertion_sort(arr):
 
 rand_arr = [1, 4, 6, 3, 5, 2]
 
+def insert_sort(arr):
+
+    ''' 
+    Given, rand_arr = [1, 4, 6, 3, 5, 2], let's observe this algorithm.
+    We first select the 0th element of the array, which is arr[i], equaling 1.
+    We then declare an index variable, initialized the value of i.
+
+    While the index is greater than 0, and the element at arr[index - 1] is greater
+    than arr[i] (1), we want to do some swapping.
+        Because arr[index - 1] (2) is > 1,
+
+    '''
+    for i in range(0, len(arr)):
+        cur_val = arr[i]
+        index = i
+        while index > 0 and arr[index - 1] > cur_val:
+            arr[index] = arr[index - 1]
+            index -= 1
+        arr[index] = cur_val
 def insertion_sort(arr):
     for i in range(0, len(arr)):
         cur_val = arr[i] # arr[i => (0)] => 1 # arr[i => (1)] => 4 # arr[2] => 6 # 3
         index = i # index => 0 # index => 1 # index => 2 # 3
         while index > 0 and arr[index - 1] > cur_val:
-	    # while 0 > 0 and arr[index (0) - 1 => -1 => (2)] 2 > 1
+	    # while 0 > 0 and arr[index (0) - 1] => arr[-1] => arr[(2)] => 2 > 1
 	    # while 1 > 0 and arr[index (1) - 1 => 0] => 1 > 4
 	    # while 2 > 0 and arr[index (2) - 1 => 1] => 4 > 6
 	    # while 3 > 0 and arr[index (3) - 1 => 2] => 6 > 3
@@ -65,40 +84,79 @@ def insertion_sort(arr):
 # multiple passes to make sure every element is in the right order according to every other element, as opposed to just a given pair of elements.
 
 
-# def selection_sort( arr ):
-#     # loop through n-1 elements
-#     for i in range(0, len(arr) - 1):
-#         cur_index = 0
-#         # cur_val = arr[i]
-#
-#         smallest_index = cur_index
-#
-#         while smallest_index > cur_index:
-#
-#
-#         # TO-DO: find next smallest element :: arr[i + 1]
+def selection_sort( arr ):
+    for i in range(len(arr)):
+        min = i
+        for j in range(i + 1, len(arr)):
+            if arr[j] < arr[min]:
+                min = j
+        arr[i], arr[min] = arr[min], arr[i]
 
-#         # (hint, can do in 3 loc)
-#
-#
-#
-#
-#         # TO-DO: swap :: cur_val
-#
-#
-#
-#
-#     return arr
-#
 
 # # TO-DO:  implement the Bubble Sort function below
-# def bubble_sort( arr ):
-#
-#     return arr
-#
-#
+def bubble_sort( arr ):
+    end_list = len(arr)
+    for i in range(end_list):
+        cur_val = arr[i]
+        if cur_val > arr[i + 1]:
+            cur_val, arr[i + 1] = arr[i + 1], cur_val
+            end_list -= 1
+    return arr
+
+
 # # STRETCH: implement the Count Sort function below
 # def count_sort( arr, maximum=-1 ):
 #
 #     return arr
 
+class Book:
+    def __init__(self, title, author, genre):
+        self.title = title
+        self.genre = genre
+        self.author = author
+    def __repr__(self):
+        return 'Title: ' + self.title, 'Author: ' + self.author, 'Genre: ' + self.genre
+
+def insort(shelf):
+    for index in range(len(shelf)):
+        cur_book = shelf[index]  # your i
+        book_idx = index
+
+        while book_idx > 0 and cur_book.title.upper() < shelf[book_idx - 1].title.upper():
+            shelf[index], shelf[index - 1] = shelf[index - 1], shelf[index]
+            book_idx -= 1
+    return shelf
+
+book_shelf = [
+Book('Lost In Math', 'Physics', 'Hossenfelder'),
+Book('Against Method', 'Philosophy', 'Feyerabend'),
+Book('Combinatorial Topology', 'Mathematics', 'Henle'),
+Book('Single Variable Calculus', 'Mathematics', 'Steward'),
+Book('Prolegomena', 'Philosophy', 'Kant')]
+
+# book_shelf.append(Book('Against Method', 'Philosophy', 'Feyerabend'))
+# book_shelf.append(Book('Combinatorial Topology', 'Mathematics', 'Henle'))
+# book_shelf.append(Book('Critique of Pure Reason', 'Philosophy', 'Kant'))
+# book_shelf.append(Book('Lost In Math', 'Physics', 'Hossenfelder'))
+# book_shelf.append(Book('Single Variable Calculus', 'Mathematics', 'Steward'))
+# book_shelf.append(Book('Working In Public', 'Technology', 'Eghbal'))
+
+# print(insort(book_shelf))
+insort(book_shelf)
+for i in book_shelf:
+    print(i.__repr__())
+
+
+def quicksort(array):
+    if len(array) < 2:
+        # Base case: arrays with 0 or 1 element are already "sorted"
+        return array
+    else:
+        # Recursive case
+        pivot = array[0]
+        # Sub-array of all the elements less than the pivot
+        less = [ i for i in array[1:] if i <= pivot]
+        # Sub-array of all the elements greater than the pivot
+        greater = [i for i in array[1:] if i > pivot]
+
+        return quicksort(less) + [pivot] + quicksort(greater)
